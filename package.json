@@ -1,5 +1,5 @@
 {
-  "name": "env-resolver",
+  "name": "env-fetcher-service",
   "version": "0.0.1",
   "description": "",
   "author": "Errol Fernandes",
