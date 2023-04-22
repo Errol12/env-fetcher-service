@@ -2,9 +2,9 @@
   "name": "env-extractor",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Errol Fernandes",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "dist/app.js",
   "files": [
     "dist/**/*",
