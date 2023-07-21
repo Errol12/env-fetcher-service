@@ -1,6 +1,6 @@
 {
   "name": "env-fetcher-service",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "The following package fetches aws stored parametes",
   "author": "Errol Fernandes",
   "license": "MIT",
@@ -73,5 +73,9 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Errol12/env-fetcher-service.git"
   }
 }
