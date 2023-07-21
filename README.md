@@ -1,7 +1,7 @@
 
 # Env-fetcher-service
 
-This package is used to fetch configuration from AWS Stored parameters
+This package is used to fetch configuration from AWS Stored Parameters and AWS Secret Manager
 
 
 ## Installation
@@ -39,14 +39,17 @@ export class MainService {
         },
       },
       metadata: {
-        path: '<ssm-path>',
+        secretId: '<secret-ID>', // required for AWS Secret Manager,
+        path: '<ssm-path>',  //required for AWS Stored parameter
       },
       enrichmentOptions: {
         enrichResponse: true,
         trimPathVariableName: true,
       },
     };
-    const response = app.extractEnv('AWS_SSM', options);
+
+    const extractorType = 'AWS_SSM' || 'AWS_SECRET_MANAGER';
+    const response = app.extractEnv(extractorType, options);
     return response;
   }
 }
