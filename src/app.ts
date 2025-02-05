@@ -20,7 +20,7 @@ export class App {
         output = awsSecretManagerData.get(options);
         break;
       default:
-        throw new BadRequestException('Unsupported type !');
+        throw new BadRequestException('Unsupported type!');
     }
     return output;
   }
