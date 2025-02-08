@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-const { SSMClient, GetParameterCommand, GetParameterHistoryCommand, GetParametersByPathCommand, GetParametersCommand } = require('@aws-sdk/client-ssm');
+const { SSMClient, GetParameterCommand, GetParametersByPathCommand } = require('@aws-sdk/client-ssm');
 
 @Injectable()
 export class Helper {

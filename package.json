@@ -1,6 +1,6 @@
 {
   "name": "env-fetcher-service",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "The following package fetches aws stored parametes",
   "author": "Errol Fernandes",
   "license": "MIT",
