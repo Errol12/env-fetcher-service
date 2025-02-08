@@ -1,21 +1,28 @@
 import { Injectable } from '@nestjs/common';
-import * as AWS from 'aws-sdk';
+const { SSMClient, GetParameterCommand, GetParameterHistoryCommand, GetParametersByPathCommand, GetParametersCommand } = require('@aws-sdk/client-ssm');
 
 @Injectable()
 export class Helper {
   async auth(credentials) {
-    return new AWS.SSM(credentials);
+    return new SSMClient(credentials);
+
   }
 
-  async fetchData(client: AWS.SSM, path: string, nextToken = null) {
-    const getParameters = await client
-      .getParametersByPath({
-        Path: path,
-        WithDecryption: true,
-        NextToken: nextToken,
-      })
-      .promise();
-    return getParameters;
+  async fetchDataByPath(client: any, path: string, nextToken = null) {
+    const getParameters = new GetParametersByPathCommand({
+      Path: path,
+      WithDecryption: true,
+      NextToken: nextToken,
+    });
+    return await client.send(getParameters);
+  }
+
+  async fetchDataByKey(client: any, path: string) {
+    const getParameters = new GetParameterCommand({
+      Name: path,
+      WithDecryption: true
+    });
+    return await client.send(getParameters);
   }
 
   enrichResponse(response, path = null, enrichmentOptions = null) {
@@ -26,7 +33,7 @@ export class Helper {
         (_el) =>
           (payload[
             enrichmentOptions && enrichmentOptions.trimPathVariableName
-              ? _el['Name'].replace(path, '')
+              ? _el['Name'].replace(`${path}/`, '')
               : _el['Name']
           ] = _el['Value']),
       );
