@@ -41,6 +41,8 @@ export class MainService {
       metadata: {
         secretId: '<secret-ID>', // required for AWS Secret Manager,
         path: '<ssm-path>',  //required for AWS Stored parameter
+        paths: [],
+        keys: [],
       },
       enrichmentOptions: {
         enrichResponse: true,
