@@ -1,7 +1,7 @@
 {
   "name": "env-fetcher-service",
-  "version": "0.0.7",
-  "description": "The following package fetches aws stored parametes",
+  "version": "1.0.0",
+  "description": "The following package fetches aws stored parametes and aws secret manager",
   "author": "Errol Fernandes",
   "license": "MIT",
   "main": "dist/app.js",
@@ -22,14 +22,18 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "commit": "cz"
   },
   "dependencies": {
-    "@aws-sdk/client-ssm": "^3.316.0",
+    "@aws-sdk/client-secrets-manager": "^3.744.0",
+    "@aws-sdk/client-ssm": "^3.743.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
-    "aws-sdk": "^2.1363.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "joi": "^17.13.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
@@ -44,6 +48,8 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -77,5 +83,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Errol12/env-fetcher-service.git"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

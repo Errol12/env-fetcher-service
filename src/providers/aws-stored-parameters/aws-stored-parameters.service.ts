@@ -12,7 +12,7 @@ export class AWSStoredParametersService implements IBase {
     let nextToken = null;
     let nextIteration = false;
     do {
-      const storedParams = await helper.fetchData(
+      const storedParams = await helper.fetchDataByPath(
         client,
         metadata.path,
         nextToken,
@@ -24,5 +24,16 @@ export class AWSStoredParametersService implements IBase {
     return enrichmentOptions && enrichmentOptions.enrichResponse
       ? helper.enrichResponse(paramList, metadata.path, enrichmentOptions)
       : paramList.flat();
+  }
+
+  async getByKey(options){
+    const { credentials, metadata } = options;
+    const helper = new Helper();
+    const client = await helper.auth(credentials);
+    const storedParams = await helper.fetchDataByKey(
+      client,
+      metadata.key,
+    );
+    return storedParams.Parameter?.Value || null;
   }
 }
