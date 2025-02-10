@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { Helper } from './helper';
-import { SchemaDto } from './validators/schema.dto';
+const packageJson = require('../package.json');
 @Injectable()
 export class App {
-  getHello(): string {
-    return 'v1.1';
+  version(): string {
+    return packageJson.version;
   }
 
-  extractEnv(type, options: SchemaDto): any {
+  extractEnv(type, options): any {
     const logic = new Helper();
     return logic.process(type, options);
   }

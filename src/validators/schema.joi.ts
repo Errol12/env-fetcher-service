@@ -7,11 +7,12 @@ export const AwsCredentialsSchema = Joi.object({
 
 export const CredentialsSchema = Joi.object({
   region: Joi.string().required(),
-  credentials: AwsCredentialsSchema.required(),
+  credentials: AwsCredentialsSchema.optional(),
 });
 
 export const MetadataSchema = Joi.object({
   path: Joi.string().allow(null, ''), // Optional or empty string
+  secretId: Joi.string().allow(null, ''), // Optional or empty string
   paths: Joi.alternatives().conditional('path', {
     is: Joi.exist(),
     then: Joi.forbidden(), // If path is present, paths must not be sent

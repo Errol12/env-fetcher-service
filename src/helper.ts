@@ -2,11 +2,10 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { SupportedEnvTypes } from './constants/supported-env-types';
 import { AWSSecretManagerService } from './providers/aws-secret-manager/aws-secret-manager.service';
 import { AWSStoredParametersService } from './providers/aws-stored-parameters/aws-stored-parameters.service';
-import { SchemaDto } from './validators/schema.dto';
 import { JoiSchema } from './validators/schema.joi';
 @Injectable()
 export class Helper {
-  process(type, options: SchemaDto): any {
+  process(type, options: any): any {
     // Validate data using Joi
     const { error } = JoiSchema.validate(options, { abortEarly: false });
 
