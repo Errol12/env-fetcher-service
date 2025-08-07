@@ -10,7 +10,6 @@
     "*.md"
   ],
   "scripts": {
-    "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -23,18 +22,13 @@
     "@aws-sdk/client-secrets-manager": "^3.862.0",
     "@aws-sdk/client-ssm": "^3.862.0",
     "@nestjs/common": "^11.1.6",
-    "@nestjs/core": "^11.1.6",
-    "@nestjs/platform-express": "^11.1.6",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "joi": "^18.0.0",
     "reflect-metadata": "^0.2.2",
-    "rimraf": "^6.0.1",
     "rxjs": "^7.8.2"
   },
   "devDependencies": {
-    "@nestjs/schematics": "^11.0.7",
-    "@types/express": "^5.0.3",
     "@types/node": "^24.2.0",
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",
@@ -42,10 +36,6 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "prettier": "^3.6.2",
-    "source-map-support": "^0.5.21",
-    "ts-loader": "^9.5.2",
-    "ts-node": "^10.9.2",
-    "tsconfig-paths": "4.2.0",
     "typescript": "^5.9.2"
   },
   "jest": {
@@ -68,10 +58,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Errol12/env-fetcher-service.git"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
