@@ -1,4 +1,4 @@
-name: Publish NestJS Library
+name: Publish Library
 
 on:
   push:
