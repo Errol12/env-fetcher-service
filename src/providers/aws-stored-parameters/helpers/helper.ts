@@ -25,7 +25,7 @@ export class Helper {
       });
       return await client.send(getParameters);
     } catch(error) {
-      throw new NotFoundException(`Error in fetching value for key: ${path}`) ;
+      throw new NotFoundException(`Missing key: ${path}`) ;
     }
     
   }
