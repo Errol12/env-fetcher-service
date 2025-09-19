@@ -21,7 +21,7 @@ export class AWSStoredParametersService implements IBase {
       nextToken = storedParams.NextToken;
       paramList.push(storedParams.Parameters);
     } while (nextIteration);
-    return enrichmentOptions && enrichmentOptions.enrichResponse
+    return enrichmentOptions && enrichmentOptions?.enrichResponse
       ? helper.enrichResponse(paramList, metadata.path, enrichmentOptions)
       : paramList.flat();
   }
@@ -34,6 +34,6 @@ export class AWSStoredParametersService implements IBase {
       client,
       metadata.key,
     );
-    return storedParams.Parameter?.Value || null;
+    return storedParams?.Parameter?.Value || null;
   }
 }
