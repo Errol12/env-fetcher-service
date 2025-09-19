@@ -1,6 +1,6 @@
 {
   "name": "env-fetcher-service",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "The following package fetches aws stored parametes and aws secret manager",
   "author": "Errol Fernandes",
   "license": "MIT",
@@ -16,8 +16,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "publish": "npm run build && npm publish"
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.862.0",
