@@ -1,6 +1,6 @@
 {
   "name": "env-fetcher-service",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "The following package fetches aws stored parametes and aws secret manager",
   "author": "Errol Fernandes",
   "license": "MIT",
