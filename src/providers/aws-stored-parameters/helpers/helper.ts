@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 const { SSMClient, GetParameterCommand, GetParametersByPathCommand } = require('@aws-sdk/client-ssm');
 
 @Injectable()
@@ -18,11 +18,16 @@ export class Helper {
   }
 
   async fetchDataByKey(client: any, path: string) {
-    const getParameters = new GetParameterCommand({
-      Name: path,
-      WithDecryption: true
-    });
-    return await client.send(getParameters);
+    try {
+      const getParameters = new GetParameterCommand({
+        Name: path,
+        WithDecryption: true
+      });
+      return await client.send(getParameters);
+    } catch(error) {
+      throw new NotFoundException(`Error in fetching value for key: ${path}`) ;
+    }
+    
   }
 
   enrichResponse(response, path = null, enrichmentOptions = null) {
