@@ -25,11 +25,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 4. Build the NestJS library
+      # 4. Install nest cli
+      - name: Install Nest CLI
+        run: npm install -g @nestjs/cli 
+
+      # 5. Build the NestJS library
       - name: Build library
         run: npm run build
 
-      # 5. Publish to npm
+      # 6. Publish to npm
       - name: Publish package
         run: npm publish 
         env:
