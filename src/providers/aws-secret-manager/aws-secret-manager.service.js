@@ -1,9 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { IBase } from '../../interfaces/base.interface';
-import { Helper } from './helpers/helper';
+const Helper = require('./helpers/helper');
 
-@Injectable()
-export class AWSSecretManagerService implements IBase {
+class AWSSecretManagerService {
   async get(options) {
     const { credentials, metadata } = options;
     const helper = new Helper();
@@ -12,3 +9,5 @@ export class AWSSecretManagerService implements IBase {
     return helper.enrichResponse(secretManagerData);
   }
 }
+
+module.exports = AWSSecretManagerService;

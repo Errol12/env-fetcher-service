@@ -1,9 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { IBase } from '../../interfaces/base.interface';
-import { Helper } from './helpers/helper';
+const Helper = require('./helpers/helper');
 
-@Injectable()
-export class AWSStoredParametersService implements IBase {
+class AWSStoredParametersService {
   async get(options) {
     const { credentials, metadata, enrichmentOptions } = options;
     const paramList = [];
@@ -26,14 +23,13 @@ export class AWSStoredParametersService implements IBase {
       : paramList.flat();
   }
 
-  async getByKey(options){
+  async getByKey(options) {
     const { credentials, metadata } = options;
     const helper = new Helper();
     const client = await helper.auth(credentials);
-    const storedParams = await helper.fetchDataByKey(
-      client,
-      metadata.key,
-    );
+    const storedParams = await helper.fetchDataByKey(client, metadata.key);
     return storedParams?.Parameter?.Value || null;
   }
 }
+
+module.exports = AWSStoredParametersService;
