@@ -1,14 +1,15 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-const { SSMClient, GetParameterCommand, GetParametersByPathCommand } = require('@aws-sdk/client-ssm');
+const {
+  SSMClient,
+  GetParameterCommand,
+  GetParametersByPathCommand,
+} = require('@aws-sdk/client-ssm');
 
-@Injectable()
-export class Helper {
+class Helper {
   async auth(credentials) {
     return new SSMClient(credentials);
-
   }
 
-  async fetchDataByPath(client: any, path: string, nextToken = null) {
+  async fetchDataByPath(client, path, nextToken = null) {
     const getParameters = new GetParametersByPathCommand({
       Path: path,
       WithDecryption: true,
@@ -17,17 +18,16 @@ export class Helper {
     return await client.send(getParameters);
   }
 
-  async fetchDataByKey(client: any, path: string) {
+  async fetchDataByKey(client, path) {
     try {
       const getParameters = new GetParameterCommand({
         Name: path,
-        WithDecryption: true
+        WithDecryption: true,
       });
       return await client.send(getParameters);
-    } catch(error) {
-      throw new NotFoundException(`Missing key: ${path}`) ;
+    } catch {
+      throw new Error(`Missing key: ${path}`);
     }
-    
   }
 
   enrichResponse(response, path = null, enrichmentOptions = null) {
@@ -45,3 +45,5 @@ export class Helper {
     return payload;
   }
 }
+
+module.exports = Helper;

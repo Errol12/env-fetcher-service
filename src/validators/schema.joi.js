@@ -1,16 +1,16 @@
-import * as Joi from 'joi';
+const Joi = require('joi');
 
-export const AwsCredentialsSchema = Joi.object({
+const AwsCredentialsSchema = Joi.object({
   accessKeyId: Joi.string().required(),
   secretAccessKey: Joi.string().required(),
 });
 
-export const CredentialsSchema = Joi.object({
+const CredentialsSchema = Joi.object({
   region: Joi.string().required(),
   credentials: AwsCredentialsSchema.optional(),
 });
 
-export const MetadataSchema = Joi.object({
+const MetadataSchema = Joi.object({
   path: Joi.string().allow(null, ''), // Optional or empty string
   secretId: Joi.string().allow(null, ''), // Optional or empty string
   paths: Joi.alternatives().conditional('path', {
@@ -25,13 +25,15 @@ export const MetadataSchema = Joi.object({
   }),
 });
 
-export const EnrichmentOptionsSchema = Joi.object({
+const EnrichmentOptionsSchema = Joi.object({
   enrichResponse: Joi.boolean().required(),
   trimPathVariableName: Joi.boolean().required(),
 });
 
-export const JoiSchema = Joi.object({
+const JoiSchema = Joi.object({
   credentials: CredentialsSchema.required(),
   metadata: MetadataSchema.required(),
   enrichmentOptions: EnrichmentOptionsSchema.required(),
 });
+
+module.exports = { JoiSchema };
