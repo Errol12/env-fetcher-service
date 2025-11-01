@@ -14,27 +14,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Setup Node
+      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '22'
           registry-url: 'https://registry.npmjs.org/'
 
       # 3. Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      # 4. Install nest cli
-      - name: Install Nest CLI
-        run: npm install -g @nestjs/cli 
+      # 4. Run linter
+      - name: Run linter
+        run: npm run lint
 
-      # 5. Build the NestJS library
-      - name: Build library
-        run: npm run build
+      # 5. Run tests with coverage
+      - name: Run tests
+        run: npm run test:coverage
 
-      # 6. Publish to npm
+      # 6. Check for security vulnerabilities
+      - name: Audit dependencies
+        run: npm audit --audit-level=moderate
+        continue-on-error: false
+
+      # 7. Publish to npm
       - name: Publish package
-        run: npm publish 
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
