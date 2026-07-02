@@ -209,8 +209,8 @@ describe('JoiSchema', () => {
       expect(error).toBeDefined();
     });
 
-    it('should reject keys array with more than 50 items', () => {
-      const keys = Array.from({ length: 51 }, (_, i) => `/key${i}`);
+    it('should reject keys array with more than 500 items', () => {
+      const keys = Array.from({ length: 501 }, (_, i) => `/key${i}`);
       const options = {
         ...validOptions,
         metadata: {
