@@ -21,7 +21,7 @@ const MetadataSchema = Joi.object({
   keys: Joi.alternatives().conditional('path', {
     is: Joi.exist(),
     then: Joi.forbidden(), // If path is present, keys must not be sent
-    otherwise: Joi.array().items(Joi.string()).max(50).optional(),
+    otherwise: Joi.array().items(Joi.string()).max(500).optional(),
   }),
 });
 
