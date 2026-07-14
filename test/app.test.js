@@ -22,7 +22,7 @@ describe('App', () => {
   describe('version', () => {
     it('should return the package version', () => {
       const version = app.version();
-      expect(version).toBe('2.0.1');
+      expect(version).toBe('2.0.0');
     });
   });
 
