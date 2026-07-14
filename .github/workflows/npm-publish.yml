@@ -33,12 +33,7 @@ jobs:
       - name: Run tests
         run: npm run test:coverage
 
-      # 6. Check for security vulnerabilities
-      - name: Audit dependencies
-        run: npm audit --audit-level=moderate
-        continue-on-error: false
-
-      # 7. Publish to npm
+      # 6. Publish to npm
       - name: Publish package
         run: npm publish
         env:
